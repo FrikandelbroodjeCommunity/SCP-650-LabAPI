@@ -1,51 +1,40 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Exiled.API.Interfaces;
-using UnityEngine;
-using System.IO;
-using Exiled.API.Features;
-using Exiled.Loader;
 using MapGeneration;
 using PlayerRoles;
 using System.ComponentModel;
 
 namespace Scp650Plugin
 {
-    public sealed class Config : IConfig
+    public class Config
     {
         //Setting
-        public bool IsEnabled { get; set; } = true;
-        public bool Debug { get; set; } = false;
-        public string SchematicName { get; set; } = "SCP650";
-        public string PoseFolderPath { get; set; } = Path.Combine(Paths.Configs, "SCP-650 poses");
+        public string SchematicFolder { get; set; } = "Maps";
+        public string SchematicName { get; set; } = "SCP650.json";
+        public string PoseFolder { get; set; } = "Poses";
         public string PoseFile { get; set; } = "global.yml";
 
         //Spawning
         public int MaximumSpawnNumber { get; set; } = 1;
-        public FacilityZone[] SpawnableZone { get; set; } = new FacilityZone[]
-        {
+        public FacilityZone[] SpawnableZone { get; set; } = {
             FacilityZone.LightContainment,
             FacilityZone.HeavyContainment,
             FacilityZone.Entrance
         };
-        public bool LogsItslocation { get; set; } = true;
 
         //Targeting
-        public Faction[] ObserveEffectableFactions { get; set; } = new Faction[]
-        {
+        public Faction[] ObserveEffectableFactions { get; set; } = {
             Faction.FoundationEnemy,
             Faction.FoundationStaff
         };
-        public RoleTypeId[] ObserveEffectableBlacklistRoles { get; set; } = new RoleTypeId[] { };
-        public Faction[] TargetableFactions { get; set; } = new Faction[]
-        {
+        
+        public RoleTypeId[] ObserveEffectableBlacklistRoles { get; set; } = { };
+        
+        public Faction[] TargetableFactions { get; set; } = {
             Faction.FoundationEnemy,
             Faction.FoundationStaff
         };
-        public RoleTypeId[] TargetBlacklistRoles { get; set; } = new RoleTypeId[] { };
+        
+        public RoleTypeId[] TargetBlacklistRoles { get; set; } = { };
+        
         public bool OverlapTarget { get; set; } = false;
         public int TargetingAmbient { get; set; } = -1;
 
@@ -59,41 +48,5 @@ namespace Scp650Plugin
         public float TeleportMinCoolTime { get; set; } = 5f;
         public float TeleportMaxCoolTime { get; set; } = 10f;
         public bool FollowTargetToPocketDimension { get; set; } = true;
-
-        public void LoadPoses()
-        {
-            if (!Directory.Exists(PoseFolderPath))
-            {
-                Directory.CreateDirectory(PoseFolderPath);
-            }
-            string filePath = Path.Combine(PoseFolderPath, PoseFile);
-            Log.Info($"{filePath}");
-            if (!File.Exists(filePath))
-            {
-                poses = new Poses();
-                File.WriteAllText(filePath, Loader.Serializer.Serialize(poses));
-            }
-            else
-            {
-                poses = Loader.Deserializer.Deserialize<Poses>(File.ReadAllText(filePath));
-                File.WriteAllText(filePath, Loader.Serializer.Serialize(poses));
-            }
-        }
-        public Poses poses;
-    }
-
-    public class Poses
-    {
-        public List<Poseture> posetures { get; set; } = new List<Poseture>
-        {
-            new Poseture()
-        };
-    }
-
-    public class Poseture
-    {
-        public string PoseName { get; set; } = "Standing";
-
-        public Dictionary<string, Vector3[]> TransfromPerJoint { get; set; }
     }
 }
