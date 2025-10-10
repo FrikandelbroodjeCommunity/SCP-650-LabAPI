@@ -24,7 +24,6 @@ namespace Scp650Plugin
         private float _followTime;
         private float _targetTeleportTimer;
         private float _teleportTime;
-        private float _debugUpdateTimer;
         private Posture _posture;
         private Player[] _seeingPlayers;
 
@@ -59,13 +58,6 @@ namespace Scp650Plugin
                     _targetFollowTimer = 0f;
                     _targetTeleportTimer = 0f;
                 }
-            }
-
-            _debugUpdateTimer -= Time.deltaTime;
-            if (_debugUpdateTimer <= 0)
-            {
-                _debugUpdateTimer = 10;
-                DebugMenu.Instance.UpdateAll();
             }
             
             if (Target == null) return;

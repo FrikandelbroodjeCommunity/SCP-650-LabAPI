@@ -4,6 +4,7 @@ using FrikanUtils.ServerSpecificSettings.Menus;
 using FrikanUtils.ServerSpecificSettings.Settings;
 using LabApi.Features.Permissions;
 using LabApi.Features.Wrappers;
+using MEC;
 
 namespace Scp650Plugin.Debugging
 {
@@ -33,6 +34,16 @@ namespace Scp650Plugin.Debugging
             {
                 area.Label = text;
             }
+        }
+
+        public static IEnumerator<float> DebugRoutine()
+        {
+            while (true)
+            {
+                Instance.UpdateAll();
+                yield return Timing.WaitForSeconds(10);
+            }
+            // ReSharper disable once IteratorNeverReturns
         }
 
         private static string GetText()
