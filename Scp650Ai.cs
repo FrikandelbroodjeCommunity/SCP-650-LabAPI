@@ -1,20 +1,19 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
+using LabApi.Features.Wrappers;
 using PlayerRoles;
 using PlayerRoles.PlayableScps;
-using LabApi.Features.Wrappers;
-using Scp650Plugin.Debugging;
-using Scp650Plugin.Poses;
+using SCP_650.Poses;
+using UnityEngine;
 using PrimitiveObjectToy = AdminToys.PrimitiveObjectToy;
 
-namespace Scp650Plugin
+namespace SCP_650
 {
     public class Scp650Ai : MonoBehaviour
     {
         public static readonly List<Scp650Ai> Instances = new List<Scp650Ai>();
-        
+
         [NonSerialized] public Player Target;
 
         private static Config Config => Scp650Plugin.Instance.Config;
@@ -29,7 +28,7 @@ namespace Scp650Plugin
 
         private readonly Dictionary<string, GameObject> _joints = new Dictionary<string, GameObject> { };
         private readonly Dictionary<string, GameObject> _jointHelper = new Dictionary<string, GameObject> { };
-        
+
         private void Start()
         {
             Instances.Add(this);
@@ -59,15 +58,15 @@ namespace Scp650Plugin
                     _targetTeleportTimer = 0f;
                 }
             }
-            
+
             if (Target == null) return;
-            
+
             if (!Target.IsAlive)
             {
                 Target = null;
                 return;
             }
-                
+
             _targetFollowTimer += Time.deltaTime;
             if (_targetFollowTimer >= _followTime)
             {
@@ -108,7 +107,7 @@ namespace Scp650Plugin
                     newPosture = null;
                 }
             }
-            
+
             _posture = newPosture;
 
             foreach (var pair in _joints)
@@ -148,38 +147,32 @@ namespace Scp650Plugin
             _targetTeleportTimer = 0f;
         }
 
-        public void TryTeleport(List<Player> blinker = null)
+        public void TryTeleport()
         {
+            // Check if there is 3 meters of room behind the player (we teleport 2 behind them)
             if (Physics.Raycast(Target.Camera.position, -Target.Camera.forward.NormalizeIgnoreY(), out _, 3f))
             {
                 return;
             }
 
+            // Get the ground position of the new teleport, height difference with the player can be at most 3 meters.
             if (!Physics.Raycast(Target.Camera.position - Target.Camera.forward.NormalizeIgnoreY() * 2f, Vector3.down,
                     out var hit, 3f))
             {
                 return;
             }
 
+            // Check if there are not any other instances within 2 meters of the teleportation target.
             if (Instances.Any(ai => ai != this && Vector3.Distance(ai.transform.position, hit.point) <= 2f))
             {
                 return;
             }
 
-            foreach (var player in Player.List.Where(player => !player.IsHost && player != Target))
+            // Check if a non-target is looking at SCP-650
+            if (Player.List.Where(player => !player.IsHost && player != Target)
+                .Any(player => IsWatching(hit.point + new Vector3(0f, 1.2f, 0f), player)))
             {
-                if (blinker != null)
-                {
-                    if (blinker.Contains(player))
-                    {
-                        continue;
-                    }
-                }
-
-                if (IsWatching(hit.point + new Vector3(0f, 1.2f, 0f), player))
-                {
-                    return;
-                }
+                return;
             }
 
             var pos = hit.point;

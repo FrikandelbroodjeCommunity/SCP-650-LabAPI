@@ -6,7 +6,7 @@ using LabApi.Features.Permissions;
 using LabApi.Features.Wrappers;
 using MEC;
 
-namespace Scp650Plugin.Debugging
+namespace SCP_650.Debugging
 {
     public class DebugMenu : MenuBase
     {

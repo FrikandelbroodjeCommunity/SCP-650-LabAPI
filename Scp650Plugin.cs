@@ -2,9 +2,9 @@ using System;
 using FrikanUtils.ServerSpecificSettings;
 using LabApi.Features;
 using LabApi.Loader.Features.Plugins;
-using Scp650Plugin.Debugging;
+using SCP_650.Debugging;
 
-namespace Scp650Plugin
+namespace SCP_650
 {
     public class Scp650Plugin : Plugin<Config>
     {

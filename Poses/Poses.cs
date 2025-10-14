@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Scp650Plugin.Poses
+namespace SCP_650.Poses
 {
     public class Poses
     {

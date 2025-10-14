@@ -5,12 +5,12 @@ using LabApi.Events.Arguments.ServerEvents;
 using LabApi.Events.Handlers;
 using LabApi.Features.Wrappers;
 using MEC;
-using Scp650Plugin.Debugging;
+using SCP_650.Debugging;
 using UnityEngine;
 using BreakableDoor = Interactables.Interobjects.BreakableDoor;
 using Logger = LabApi.Features.Console.Logger;
 
-namespace Scp650Plugin
+namespace SCP_650
 {
     public static class EventHandler
     {

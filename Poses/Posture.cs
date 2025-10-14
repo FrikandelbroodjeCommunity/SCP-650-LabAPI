@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Scp650Plugin.Poses
+namespace SCP_650.Poses
 {
     public class Posture
     {

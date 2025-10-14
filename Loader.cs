@@ -1,7 +1,7 @@
 ﻿using FrikanUtils.FileSystem;
 using ProjectMER.Features.Serializable.Schematics;
 
-namespace Scp650Plugin
+namespace SCP_650
 {
     public static class Loader
     {
