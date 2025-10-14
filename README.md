@@ -18,6 +18,7 @@ If SCP-650 sees you, it will start chasing you, constantly sneaking up behind yo
 > [!IMPORTANT]
 > **Required dependencies:**
 > - [FrikanUtils](https://github.com/FrikandelbroodjeCommunity/FrikanUtils/blob/master/FrikanUtils/README.md)
+> - [FrikanUtils-ProjectMer](https://github.com/FrikandelbroodjeCommunity/FrikanUtils/blob/master/FrikanUtils-ProjectMer/README.md)
 > - [ProjectMER](https://github.com/Michal78900/ProjectMER/releases/latest)
 
 Install the dependencies above, together with
