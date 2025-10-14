@@ -46,9 +46,6 @@
         <Reference Include="FrikanUtils">
             <HintPath>$(SL_DEPENDENCIES)\FrikanUtils.dll</HintPath>
         </Reference>
-        <Reference Include="FrikanUtils-ProjectMER">
-            <HintPath>$(SL_DEPENDENCIES)\FrikanUtils_ProjectMer.dll</HintPath>
-        </Reference>
         <Reference Include="Mirror">
             <HintPath>$(SL_REFERENCES)\Mirror.dll</HintPath>
         </Reference>

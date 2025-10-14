@@ -18,7 +18,7 @@ If SCP-650 sees you, it will start chasing you, constantly sneaking up behind yo
 > [!IMPORTANT]
 > **Required dependencies:**
 > - [FrikanUtils](https://github.com/FrikandelbroodjeCommunity/FrikanUtils/blob/master/FrikanUtils/README.md)
-> - [FrikanUtils-ProjectMer](https://github.com/FrikandelbroodjeCommunity/FrikanUtils/blob/master/FrikanUtils-ProjectMer/README.md)
+> - [ProjectMER](https://github.com/Michal78900/ProjectMER/releases/latest)
 
 Install the dependencies above, together with
 the [latest release](https://github.com/FrikandelbroodjeCommunity/SCP-650-LabAPI/releases/latest) of the SCP-650 plugin
@@ -27,6 +27,10 @@ and place them in your LabAPI plugin folder.
 The plugin requires SCP-650 to be provided as a schematic, download it from
 the [releases page](https://github.com/FrikandelbroodjeCommunity/SCP-650-LabAPI/releases/latest) and place it in the
 correct folder. By default, this will be <code>Configs/{port/global}/FrikanUtils/Maps/SCP650.json</code>.
+
+Additionally, you must download the poses, download the `global.yml` file from
+the [releases page](https://github.com/FrikandelbroodjeCommunity/SCP-650-LabAPI/releases/latest) and place it in the
+correct folder. By default, this will be <code>Configs/{port/global}/FrikanUtils/Poses/global.yml</code>.
 
 # Custom poses
 
