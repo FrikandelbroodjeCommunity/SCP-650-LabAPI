@@ -57,11 +57,10 @@ namespace SCP_650
                 var door = possibleDoors.RandomItem();
                 var transform = door.Transform;
                 var pos = transform.position + 0.75f * (Random.Range(0, 1) * 2f - 1f) * transform.forward;
-                var rotation = Quaternion.Euler(new Vector3(0f, UnityEngine.Random.Range(0f, 360f), 0f));
+                var rotation = Quaternion.Euler(new Vector3(0f, Random.Range(0f, 360f), 0f));
                 var spawned = Loader.Scp650Schematic.SpawnSchematic(pos, rotation);
-                spawned.gameObject.AddComponent<Scp650Ai>();
-
-                Logger.Info("Spawned SCP-650 at " + door.DoorName + " | " + door.NameTag);
+                var ai = spawned.gameObject.AddComponent<Scp650Ai>();
+                ai.ChildRegister(spawned);
             }
 
             if (_debugRoutine.IsValid)

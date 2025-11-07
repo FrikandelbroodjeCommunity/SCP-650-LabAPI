@@ -4,6 +4,7 @@ using System.Linq;
 using LabApi.Features.Wrappers;
 using PlayerRoles;
 using PlayerRoles.PlayableScps;
+using ProjectMER.Features.Objects;
 using SCP_650.Poses;
 using UnityEngine;
 using PrimitiveObjectToy = AdminToys.PrimitiveObjectToy;
@@ -16,6 +17,8 @@ namespace SCP_650
 
         [NonSerialized] public Player Target;
 
+        private const string Prefix = "mixamorig";
+
         private static Config Config => Scp650Plugin.Instance.Config;
 
         private bool _lookingForTarget = true;
@@ -27,14 +30,10 @@ namespace SCP_650
         private Player[] _seeingPlayers;
 
         private readonly Dictionary<string, GameObject> _joints = new Dictionary<string, GameObject> { };
-        private readonly Dictionary<string, GameObject> _jointHelper = new Dictionary<string, GameObject> { };
 
         private void Start()
         {
             Instances.Add(this);
-
-            ChildRegister(gameObject);
-            ChangePose();
         }
 
         private void Update()
@@ -89,6 +88,24 @@ namespace SCP_650
             Instances.Remove(this);
         }
 
+        public void ChildRegister(SchematicObject obj)
+        {
+            foreach (var block in obj.ObjectFromId.Values.Select(x => x.gameObject))
+            {
+                if (block.TryGetComponent(out PrimitiveObjectToy toy))
+                {
+                    toy.MovementSmoothing = 0;
+                }
+
+                if (block.name.Contains(Prefix))
+                {
+                    _joints.Add(block.name, block);
+                }
+            }
+
+            ChangePose();
+        }
+
         public void ChangePose()
         {
             // If there is only 1 pose, we cannot never select a new one.
@@ -109,15 +126,11 @@ namespace SCP_650
             }
 
             _posture = newPosture;
-
             foreach (var pair in _joints)
             {
-                if (_posture.TransformPerJoint.TryGetValue(pair.Key.Replace("mixamorig:", ""), out var position))
+                if (_posture.TransformPerJoint.TryGetValue(pair.Key.Replace($"{Prefix}:", ""), out var position))
                 {
-                    pair.Value.transform.localPosition = _jointHelper.TryGetValue(pair.Key, out var @object)
-                        ? @object.transform.localPosition
-                        : position[0];
-
+                    pair.Value.transform.localPosition = position[0];
                     pair.Value.transform.localRotation = Quaternion.Euler(position[1]);
                 }
             }
@@ -217,31 +230,6 @@ namespace SCP_650
 
             return player != Target && Config.TargetableFactions.Contains(player.Faction) &&
                    !Config.TargetBlacklistRoles.Contains(player.Role);
-        }
-
-        private void ChildRegister(GameObject @object)
-        {
-            for (var i = 0; i < @object.transform.childCount; i++)
-            {
-                var game = @object.transform.GetChild(i).gameObject;
-                if (game.TryGetComponent(out PrimitiveObjectToy toy))
-                {
-                    toy.MovementSmoothing = 0;
-                }
-
-                if (game.name.Contains("mixamorig"))
-                {
-                    if (toy != null)
-                    {
-                        _jointHelper.Add(game.name, game);
-                    }
-                    else
-                    {
-                        _joints.Add(game.name, game);
-                        ChildRegister(game);
-                    }
-                }
-            }
         }
     }
 }
