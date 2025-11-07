@@ -12,7 +12,7 @@ namespace SCP_650
         public override string Description => "";
         public override string Author => "Drakoor";
         public override Version Version => new Version(1, 0, 0);
-        public override Version RequiredApiVersion => LabApiProperties.CurrentVersion;
+        public override Version RequiredApiVersion => new Version(LabApiProperties.CompiledVersion);
 
         public static Scp650Plugin Instance { get; private set; }
 
