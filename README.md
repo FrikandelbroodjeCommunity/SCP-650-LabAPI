@@ -4,7 +4,7 @@
 
 # About SCP-650
 
-Plugin for SCP-650 schematic of MER plugin based on Exiled framework of SCP: Secret Laboratory.
+Plugin for SCP-650 schematic of MER plugin based on LabAPI framework of SCP: Secret Laboratory.
 
 Every round SCP-650 will spawn somewhere in Site-02, attempting to jumpscare its personnel.
 If SCP-650 sees you, it will start chasing you, constantly sneaking up behind you.
