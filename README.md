@@ -27,11 +27,11 @@ and place them in your LabAPI plugin folder.
 
 The plugin requires SCP-650 to be provided as a schematic, download it from
 the [releases page](https://github.com/FrikandelbroodjeCommunity/SCP-650-LabAPI/releases/latest) and place it in the
-correct folder. By default, this will be <code>Configs/{port/global}/FrikanUtils/Maps/SCP650.json</code>.
+correct folder. By default, this will be <code>LabAPI/configs/{port/global}/FrikanUtils/Maps/SCP650.json</code>.
 
 Additionally, you must download the poses, download the `global.yml` file from
 the [releases page](https://github.com/FrikandelbroodjeCommunity/SCP-650-LabAPI/releases/latest) and place it in the
-correct folder. By default, this will be <code>Configs/{port/global}/FrikanUtils/Poses/global.yml</code>.
+correct folder. By default, this will be <code>LabAPI/configs/{port/global}/FrikanUtils/Poses/global.yml</code>.
 
 # Custom poses
 
