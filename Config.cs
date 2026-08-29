@@ -10,13 +10,13 @@ namespace SCP_650
         public string SchematicFolder { get; set; } = "Maps";
 
         [Description("The name of the schematic file")]
-        public string SchematicName { get; set; } = "SCP650.json";
+        public string SchematicName { get; set; } = "frikan.SCP650.json";
 
         [Description("The folder the poses file is in")]
         public string PoseFolder { get; set; } = "Poses";
 
         [Description("The name of the file that contains the poses")]
-        public string PoseFile { get; set; } = "global.yml";
+        public string PoseFile { get; set; } = "frikan.SCP650.yml";
 
         [Description("The maximum amount of SCP-650 instances that can be spawned")]
         public int MaximumSpawnNumber { get; set; } = 1;

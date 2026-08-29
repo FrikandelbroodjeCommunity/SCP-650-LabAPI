@@ -1,5 +1,5 @@
 [![GitHub release](https://flat.badgen.net/github/release/FrikandelbroodjeCommunity/SCP-650-LabAPI/)](https://github.com/FrikandelbroodjeCommunity/SCP-650-LabAPI/releases/latest)
-[![LabAPI Version](https://flat.badgen.net/static/LabAPI%20Version/v1.1.3)](https://github.com/northwood-studios/LabAPI)
+[![LabAPI Version](https://flat.badgen.net/static/LabAPI%20Version/v1.1.7)](https://github.com/northwood-studios/LabAPI)
 [![Original](https://flat.badgen.net/static/Original/Draakoor?icon=github)](https://github.com/Draakoor/Scp650Plugin)
 
 # About SCP-650
@@ -25,13 +25,16 @@ Install the dependencies above, together with
 the [latest release](https://github.com/FrikandelbroodjeCommunity/SCP-650-LabAPI/releases/latest) of the SCP-650 plugin
 and place them in your LabAPI plugin folder.
 
-The plugin requires SCP-650 to be provided as a schematic, download it from
-the [releases page](https://github.com/FrikandelbroodjeCommunity/SCP-650-LabAPI/releases/latest) and place it in the
-correct folder. By default, this will be <code>LabAPI/configs/{port/global}/FrikanUtils/Maps/SCP650.json</code>.
+The plguins requires SCP-650 to be provided as a schematic and the poses as a YML file. 
+These will be automatically downloaded if they haven't been installed manually.
 
-Additionally, you must download the poses, download the `global.yml` file from
+To manually install the SCP-650 schematic, download it from
 the [releases page](https://github.com/FrikandelbroodjeCommunity/SCP-650-LabAPI/releases/latest) and place it in the
-correct folder. By default, this will be <code>LabAPI/configs/{port/global}/FrikanUtils/Poses/global.yml</code>.
+correct folder. By default, this will be <code>LabAPI/configs/{port/global}/FrikanUtils/Maps/frikan.SCP650.json</code>.
+
+Additionally, to manually install the poses, download the `frikan.SCP650.yml` file from
+the [releases page](https://github.com/FrikandelbroodjeCommunity/SCP-650-LabAPI/releases/latest) and place it in the
+correct folder. By default, this will be <code>LabAPI/configs/{port/global}/FrikanUtils/Poses/frikan.SCP650.yml</code>.
 
 # Custom poses
 
@@ -42,7 +45,7 @@ correct folder. By default, this will be <code>LabAPI/configs/{port/global}/Frik
 5. Create a new pose by changing the `mixamorig:{joint}` objects. *Changing the scale is not supported.*
 6. Press play button. Then there will be a log on console tab.
 7. Press it to see all of the log contents and copy it.
-8. Open `global.yml`. And add the contents below:
+8. Open `frikan.SCP650.yml`. And add the contents below:
 
 ```
 - pose_name: {pose_name_here}
